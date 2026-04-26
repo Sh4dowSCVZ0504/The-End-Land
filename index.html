@@ -6,153 +6,157 @@
 <title>The End Lands</title>
 
 <style>
+
 /* ===== BASE ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #1a0033, #000000);
-  color: #e6ccff;
+  color: #e9d5ff;
   overflow-x: hidden;
+  background: #000;
 }
 
-/* ===== SCROLLBAR BONITA ===== */
+/* ===== GALÁXIA ===== */
+body::before {
+  content: "";
+  position: fixed;
+  top: -35%;
+  left: -35%;
+  width: 170%;
+  height: 170%;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(140,0,255,0.65), transparent 30%),
+    radial-gradient(circle at 70% 40%, rgba(255,77,255,0.45), transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(60,0,120,0.9), transparent 45%),
+    radial-gradient(circle at 30% 70%, rgba(200,120,255,0.35), transparent 40%);
+  filter: blur(1px) contrast(1.25);
+  animation: galaxyMove 16s ease-in-out infinite alternate;
+  z-index: -3;
+}
+
+/* ===== ESTRELAS ===== */
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(#ffffff 1.5px, transparent 2px),
+    radial-gradient(#c084ff 1.5px, transparent 2px),
+    radial-gradient(#ff4dff 1px, transparent 2px);
+  background-size: 40px 40px, 70px 70px, 100px 100px;
+  background-position: 0 0, 20px 30px, 50px 80px;
+  animation: starDrift 50s linear infinite;
+  opacity: 0.8;
+  z-index: -2;
+}
+
+/* ===== PARTICULAS ===== */
+.particles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, #c084ff 2px, transparent 3px);
+  background-size: 30px 30px;
+  animation: floatParticles 25s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0014;
+  background: #05000a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#6a00ff, #2b0057);
+  background: linear-gradient(180deg, #6a00ff, #ff4dff);
   border-radius: 10px;
-  box-shadow: 0 0 10px #6a00ff;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#a64dff, #6a00ff);
+  box-shadow: 0 0 15px #6a00ff;
 }
 
 /* ===== HEADER ===== */
 header {
   text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(180deg, #2a0055, transparent);
-  border-bottom: 2px solid #6a00ff;
+  padding: 70px 20px;
+  background: linear-gradient(180deg, rgba(42,0,85,0.75), transparent);
+  border-bottom: 2px solid #7a00ff;
 }
 
 header h1 {
-  font-size: 48px;
-  color: #c084ff;
-  text-shadow: 0 0 20px #6a00ff;
+  font-size: 55px;
   margin: 0;
-  animation: glow 2s infinite alternate;
-}
-
-header p {
   color: #d9b3ff;
+  text-shadow:
+    0 0 10px #6a00ff,
+    0 0 25px #a64dff,
+    0 0 40px #ff4dff;
 }
 
 /* ===== NAV ===== */
 nav {
-  text-align: center;
-  padding: 12px;
-  background: #0b0014;
-  border-bottom: 1px solid #330066;
   position: sticky;
   top: 0;
-  z-index: 10;
+  text-align: center;
+  padding: 12px;
+  background: rgba(10,0,20,0.9);
+  border-bottom: 1px solid #6a00ff;
+  backdrop-filter: blur(10px);
 }
 
 nav a {
   color: #c299ff;
   margin: 0 12px;
   text-decoration: none;
-  transition: 0.3s;
 }
 
-nav a:hover {
+/* ===== BOX ===== */
+.box {
+  background: rgba(20, 0, 40, 0.7);
+  border: 1px solid #6a00ff;
+  padding: 18px;
+  border-radius: 14px;
+}
+
+/* ===== BOTÃO ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  margin-top: 12px;
   color: white;
-  text-shadow: 0 0 10px #a64dff;
+  text-decoration: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #6a00ff, #ff4dff);
+  box-shadow: 0 0 20px #6a00ff, 0 0 40px #ff4dff;
 }
 
-/* ===== SECTIONS ===== */
+/* ===== SEÇÕES ===== */
 section {
   padding: 50px;
   max-width: 1000px;
   margin: auto;
 }
 
-h2 {
-  color: #d1a6ff;
-  border-left: 4px solid #7a00ff;
-  padding-left: 10px;
+/* ===== ANIMAÇÕES ===== */
+@keyframes galaxyMove {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.15) translate(40px,-30px); }
 }
 
-/* ===== BOX ===== */
-.box {
-  background: rgba(20, 0, 40, 0.7);
-  padding: 18px;
-  border-radius: 12px;
-  border: 1px solid #4d0099;
-  box-shadow: 0 0 20px rgba(106,0,255,0.3);
-  margin-top: 10px;
+@keyframes starDrift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1000px); }
 }
 
-/* ===== BUTTON ===== */
-.btn {
-  display: inline-block;
-  padding: 12px 22px;
-  background: linear-gradient(90deg, #6a00ff, #2b0057);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  margin-top: 10px;
-  box-shadow: 0 0 20px #6a00ff;
-  transition: 0.3s;
-  border: 1px solid #a64dff;
+@keyframes floatParticles {
+  from { transform: translateY(0); }
+  to { transform: translateY(-500px); }
 }
 
-.btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 40px #a64dff;
-}
-
-/* ===== DANGER TEXT ===== */
-.danger {
-  color: #ff4d6d;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #0a0014;
-  border-top: 1px solid #330066;
-}
-
-/* ===== ANIMAÇÃO ===== */
-@keyframes glow {
-  from { text-shadow: 0 0 10px #6a00ff; }
-  to { text-shadow: 0 0 25px #b366ff; }
-}
-
-/* ===== FUNDO PARTICULAS SIMPLES ===== */
-.particles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(106,0,255,0.05) 2px, transparent 3px);
-  background-size: 60px 60px;
-  animation: move 20s linear infinite;
-}
-
-@keyframes move {
-  from { transform: translateY(0px); }
-  to { transform: translateY(-200px); }
-}
 </style>
 </head>
 
@@ -162,25 +166,28 @@ footer {
 
 <header>
   <h1>THE END LANDS</h1>
-  <p>Um mundo sombrio onde apenas os fortes sobrevivem</p>
+  <p>⚡ Dimensão corrompida pelo vazio ⚡</p>
 </header>
 
 <nav>
   <a href="#home">Home</a>
   <a href="#sobre">Sobre</a>
   <a href="#regras">Regras</a>
-  <a href="#entrar">Como Entrar</a>
-  <a href="#eventos">Eventos</a>
+  <a href="#entrar">Entrar</a>
   <a href="#equipe">Equipe</a>
-  <a href="#contato">Contato</a>
 </nav>
 
 <section id="home">
   <h2>Home</h2>
   <div class="box">
-    <p><strong>IP:</strong> theendlands.servegame.com:25569</p>
-    <p><strong>Versão:</strong> 1.20 a 1.21.10</p>
-    <p><strong>Recomendado:</strong> 1.21.4</p>
+
+    <p><strong>IP Principal (Java):</strong> theendlands.servegame.com:25569</p>
+    <p><strong>IP Alternativo (Java):</strong> jogar.vortexhostinger.mooo.com:25569</p>
+
+    <p><strong>Bedrock:</strong></p>
+    <p>Nome: The End Lands</p>
+    <p>IP: theendlands.servegame.com</p>
+    <p>Porta: 25569</p>
 
     <a class="btn" href="https://discord.gg/5KAnbs93VD" target="_blank">
       Entrar no Discord
@@ -189,13 +196,10 @@ footer {
 </section>
 
 <section id="sobre">
-  <h2>Sobre o Servidor</h2>
+  <h2>Sobre</h2>
   <div class="box">
-    <p>The End Lands é um servidor semi-anarquia com temática da dimensão The End.</p>
-    <p>Caos controlado, liberdade e guerra entre jogadores.</p>
-
-    <p><strong>Pode:</strong> PvP, base, exploração, guerra.</p>
-    <p><strong>Não pode:</strong> hacks, dupes, exploits críticos.</p>
+    <p>Servidor semi-anarquia inspirado no The End.</p>
+    <p>Caos, PvP e sobrevivência em dimensão sombria.</p>
   </div>
 </section>
 
@@ -204,53 +208,29 @@ footer {
   <div class="box">
     <p>✔ Sem hacks</p>
     <p>✔ Sem exploits</p>
-    <p>✔ Sem crash intencional</p>
     <p>✔ Sem dupes</p>
-    <p class="danger">Ban permanente para abuso grave</p>
   </div>
 </section>
 
 <section id="entrar">
   <h2>Como Entrar</h2>
   <div class="box">
-    <p><strong>Java:</strong> adicionar IP direto</p>
-    <p><strong>Bedrock:</strong> se suportado</p>
-    <p><strong>Versões:</strong> 1.20 até 1.21.10</p>
+    <p>Java / Bedrock suportado</p>
+    <p>Versões: 1.20 - 1.21.10</p>
     <p>Recomendado: 1.21.4</p>
-  </div>
-</section>
-
-<section id="eventos">
-  <h2>Eventos</h2>
-  <div class="box">
-    <p>⚔ PvP no The End</p>
-    <p>🎁 Drops raros</p>
-    <p>📅 Eventos anunciados no Discord</p>
   </div>
 </section>
 
 <section id="equipe">
   <h2>Equipe</h2>
   <div class="box">
-    <p><strong>Dono:</strong> Eo.eduxxz</p>
+    <p><strong>Dono:</strong> Eo.eduxxz & GabrielYT</p>
     <p><strong>Admin:</strong> Shadow</p>
-    <p><strong>Mods:</strong> Em breve</p>
-  </div>
-</section>
-
-<section id="contato">
-  <h2>Contato / Denúncias</h2>
-  <div class="box">
-    <p>Use o Discord para suporte e denúncias.</p>
-
-    <a class="btn" href="https://discord.gg/5KAnbs93VD" target="_blank">
-      Abrir Discord
-    </a>
   </div>
 </section>
 
 <footer>
-  <p>The End Lands • Survival Semi-Anarchy</p>
+  The End Lands • Vazio dimensional
 </footer>
 
 </body>
