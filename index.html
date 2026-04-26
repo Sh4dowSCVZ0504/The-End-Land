@@ -7,154 +7,164 @@
 
 <style>
 
-/* ===== BASE ===== */
-body {
-  margin: 0;
+/* ===================== BASE ===================== */
+body{
+  margin:0;
   font-family: Arial, sans-serif;
-  color: #e9d5ff;
-  overflow-x: hidden;
-  background: #000;
+  color:#eaeaea;
+  background:#000;
+  overflow-x:hidden;
 }
 
-/* ===== GALÁXIA ===== */
-body::before {
-  content: "";
-  position: fixed;
-  top: -35%;
-  left: -35%;
-  width: 170%;
-  height: 170%;
+/* ===================== GALAXY BACKGROUND ===================== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-40%;
   background:
-    radial-gradient(circle at 20% 25%, rgba(140,0,255,0.65), transparent 30%),
-    radial-gradient(circle at 70% 40%, rgba(255,77,255,0.45), transparent 35%),
-    radial-gradient(circle at 50% 80%, rgba(60,0,120,0.9), transparent 45%),
-    radial-gradient(circle at 30% 70%, rgba(200,120,255,0.35), transparent 40%);
-  filter: blur(1px) contrast(1.25);
-  animation: galaxyMove 16s ease-in-out infinite alternate;
-  z-index: -3;
+    radial-gradient(circle at 20% 25%, rgba(160,0,255,0.6), transparent 35%),
+    radial-gradient(circle at 70% 30%, rgba(255,77,255,0.45), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(50,0,120,0.95), transparent 55%);
+  filter: blur(3px) contrast(1.3);
+  animation: galaxy 18s ease-in-out infinite alternate;
+  z-index:-3;
 }
 
-/* ===== ESTRELAS ===== */
-body::after {
-  content: "";
-  position: fixed;
-  width: 100%;
-  height: 100%;
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
   background-image:
-    radial-gradient(#ffffff 1.5px, transparent 2px),
-    radial-gradient(#c084ff 1.5px, transparent 2px),
+    radial-gradient(#fff 2px, transparent 3px),
+    radial-gradient(#c084ff 2px, transparent 3px),
     radial-gradient(#ff4dff 1px, transparent 2px);
-  background-size: 40px 40px, 70px 70px, 100px 100px;
-  background-position: 0 0, 20px 30px, 50px 80px;
-  animation: starDrift 50s linear infinite;
-  opacity: 0.8;
-  z-index: -2;
+  background-size:50px 50px,80px 80px,120px 120px;
+  animation: stars 60s linear infinite;
+  opacity:0.75;
+  z-index:-2;
 }
 
-/* ===== PARTICULAS ===== */
-.particles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(circle, #c084ff 2px, transparent 3px);
-  background-size: 30px 30px;
-  animation: floatParticles 25s linear infinite;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: -1;
+/* ===================== HEADER ===================== */
+header{
+  text-align:center;
+  padding:90px 20px;
+  background: rgba(20,0,40,0.45);
+  border-bottom:2px solid #a64dff;
+  backdrop-filter: blur(12px);
 }
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar {
-  width: 10px;
+header h1{
+  font-size:64px;
+  margin:0;
+  color:#d9b3ff;
+  text-shadow:0 0 20px #6a00ff, 0 0 40px #ff4dff;
 }
 
-::-webkit-scrollbar-track {
-  background: #05000a;
+header p{
+  margin-top:10px;
+  color:#caa6ff;
+  font-size:18px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6a00ff, #ff4dff);
-  border-radius: 10px;
-  box-shadow: 0 0 15px #6a00ff;
-}
-
-/* ===== HEADER ===== */
-header {
-  text-align: center;
-  padding: 70px 20px;
-  background: linear-gradient(180deg, rgba(42,0,85,0.75), transparent);
-  border-bottom: 2px solid #7a00ff;
-}
-
-header h1 {
-  font-size: 55px;
-  margin: 0;
-  color: #d9b3ff;
-  text-shadow:
-    0 0 10px #6a00ff,
-    0 0 25px #a64dff,
-    0 0 40px #ff4dff;
-}
-
-/* ===== NAV ===== */
-nav {
-  position: sticky;
-  top: 0;
-  text-align: center;
-  padding: 12px;
-  background: rgba(10,0,20,0.9);
-  border-bottom: 1px solid #6a00ff;
+/* ===================== NAV ===================== */
+nav{
+  position:sticky;
+  top:0;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:12px;
+  background:rgba(10,0,25,0.85);
+  border-bottom:1px solid #6a00ff;
   backdrop-filter: blur(10px);
+  z-index:10;
 }
 
-nav a {
-  color: #c299ff;
-  margin: 0 12px;
-  text-decoration: none;
+nav a{
+  color:#d0aaff;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
 }
 
-/* ===== BOX ===== */
-.box {
-  background: rgba(20, 0, 40, 0.7);
-  border: 1px solid #6a00ff;
-  padding: 18px;
-  border-radius: 14px;
+nav a:hover{
+  color:#fff;
+  text-shadow:0 0 15px #a64dff;
 }
 
-/* ===== BOTÃO ===== */
-.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  margin-top: 12px;
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  background: linear-gradient(90deg, #6a00ff, #ff4dff);
-  box-shadow: 0 0 20px #6a00ff, 0 0 40px #ff4dff;
+/* ===================== SECTIONS ===================== */
+section{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
 }
 
-/* ===== SEÇÕES ===== */
-section {
-  padding: 50px;
-  max-width: 1000px;
-  margin: auto;
+h2{
+  color:#e0b3ff;
+  border-left:4px solid #a64dff;
+  padding-left:12px;
+  margin-bottom:20px;
+  text-shadow:0 0 10px #6a00ff;
 }
 
-/* ===== ANIMAÇÕES ===== */
-@keyframes galaxyMove {
-  0% { transform: scale(1) translate(0,0); }
-  100% { transform: scale(1.15) translate(40px,-30px); }
+/* ===================== GRID CARDS ===================== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
 }
 
-@keyframes starDrift {
-  from { transform: translateY(0); }
-  to { transform: translateY(-1000px); }
+.card{
+  background:rgba(30,0,60,0.65);
+  border:1px solid #6a00ff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 0 25px rgba(106,0,255,0.25);
+  backdrop-filter: blur(10px);
+  transition:0.3s;
 }
 
-@keyframes floatParticles {
-  from { transform: translateY(0); }
-  to { transform: translateY(-500px); }
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 40px rgba(255,77,255,0.35);
+}
+
+/* ===================== BUTTON ===================== */
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:12px 20px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#6a00ff,#ff4dff);
+  color:white;
+  text-decoration:none;
+  box-shadow:0 0 25px #6a00ff;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.07);
+  box-shadow:0 0 40px #ff4dff;
+}
+
+/* ===================== FOOTER ===================== */
+footer{
+  text-align:center;
+  padding:25px;
+  background:#050010;
+  border-top:1px solid #6a00ff;
+  color:#caa6ff;
+}
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes galaxy{
+  0%{transform:scale(1);}
+  100%{transform:scale(1.12) translate(30px,-20px);}
+}
+
+@keyframes stars{
+  from{transform:translateY(0);}
+  to{transform:translateY(-1000px);}
 }
 
 </style>
@@ -162,11 +172,9 @@ section {
 
 <body>
 
-<div class="particles"></div>
-
 <header>
-  <h1>THE END LANDS</h1>
-  <p>⚡ Dimensão corrompida pelo vazio ⚡</p>
+  <h1>The End Lands</h1>
+  <p>Caos, PvP e sobrevivência na dimensão do vazio</p>
 </header>
 
 <nav>
@@ -178,59 +186,66 @@ section {
 </nav>
 
 <section id="home">
-  <h2>Home</h2>
-  <div class="box">
+  <h2>Conexão</h2>
 
-    <p><strong>IP Principal (Java):</strong> theendlands.servegame.com:25569</p>
-    <p><strong>IP Alternativo (Java):</strong> jogar.vortexhostinger.mooo.com:25569</p>
+  <div class="grid">
 
-    <p><strong>Bedrock:</strong></p>
-    <p>Nome: The End Lands</p>
-    <p>IP: theendlands.servegame.com</p>
-    <p>Porta: 25569</p>
+    <div class="card">
+      <h3>Java Principal</h3>
+      <p>theendlands.servegame.com:25569</p>
+    </div>
 
-    <a class="btn" href="https://discord.gg/5KAnbs93VD" target="_blank">
-      Entrar no Discord
-    </a>
+    <div class="card">
+      <h3>Java Alternativo</h3>
+      <p>jogar.vortexhostinger.mooo.com:25569</p>
+    </div>
+
+    <div class="card">
+      <h3>Bedrock</h3>
+      <p><b>Nome:</b> The End Lands</p>
+      <p><b>IP:</b> theendlands.servegame.com</p>
+      <p><b>Porta:</b> 25569</p>
+    </div>
+
   </div>
+
+  <a class="btn" href="https://discord.gg/5KAnbs93VD" target="_blank">
+    Entrar no Discord
+  </a>
 </section>
 
 <section id="sobre">
   <h2>Sobre</h2>
-  <div class="box">
-    <p>Servidor semi-anarquia inspirado no The End.</p>
-    <p>Caos, PvP e sobrevivência em dimensão sombria.</p>
+  <div class="card">
+    <p><b>Servidor semi-anarquia</b></p>
+    <p>Caos, PvP e sobrevivência, Roubos, traições, clans etc</p>
   </div>
 </section>
 
 <section id="regras">
   <h2>Regras</h2>
-  <div class="box">
-    <p>✔ Sem hacks</p>
-    <p>✔ Sem exploits</p>
-    <p>✔ Sem dupes</p>
-  </div>
-</section>
+  <div class="grid">
 
-<section id="entrar">
-  <h2>Como Entrar</h2>
-  <div class="box">
-    <p>Java / Bedrock suportado</p>
-    <p>Versões: 1.20 - 1.21.10</p>
-    <p>Recomendado: 1.21.4</p>
+    <div class="card">✔ Sem hacks</div>
+    <div class="card">✔ Sem exploits</div>
+    <div class="card">✔ Sem dupes</div>
+    <div class="card">✔ Sem crash de servidor</div>
+
   </div>
 </section>
 
 <section id="equipe">
   <h2>Equipe</h2>
-  <div class="box">
-    <p><strong>Dono:</strong> Eo.eduxxz & GabrielYT</p>
-    <p><strong>Admin:</strong> Shadow</p>
+
+  <div class="grid">
+    <div class="card"><b>Dono:</b> Eo.eduxxz</div>
+    <div class="card"><b>Dono:</b> GabrielYT</div>
+    <div class="card"><b>Admin:</b> Shadow</div>
   </div>
 </section>
 
 <footer>
-  The End Lands • Vazio dimensional
+  The End Lands • Dimensão do Vazio
 </footer>
 
 </body>
